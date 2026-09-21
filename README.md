@@ -8,13 +8,13 @@ on [skills.sh](https://skills.sh).
 ## Install a skill
 
 ```bash
-npx skills add <your-github-username>/agent-skills --skill <skill-name>
+npx skills add bkoimett/agent-skills --skill <skill-name>
 ```
 
 Or grab the whole collection:
 
 ```bash
-npx skills add <your-github-username>/agent-skills
+npx skills add bkoimett/agent-skills
 ```
 
 ## Skills
