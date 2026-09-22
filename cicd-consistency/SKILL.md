@@ -1,46 +1,29 @@
 ---
 name: cicd-consistency
-description: "NOT YET BUILT. Planned: generate the same GitHub Actions workflow pattern per stack type (Node/TS vs Go) across every project, so CI behaves identically everywhere regardless of which project it's in."
-metadata:
-  status: planned
+description: Create or audit CI workflows so they run the project's real install, lint, typecheck, test, build, and security checks consistently.
 ---
 
-# CI/CD Consistency (planned)
+# CI/CD consistency
 
-## Problem this is meant to solve
+## Procedure
 
-Right now CI setup gets reinvented (or skipped) per project. This skill
-should generate the same GitHub Actions shape for a given stack type
-every time: lint → typecheck/build → test → (optionally) deploy trigger,
-with the same job names and same failure behavior across every repo that
-uses this stack.
+1. Inspect repository tooling and package scripts.
+2. Detect package manager, languages, workspace layout, and build targets.
+3. Identify existing CI workflows.
+4. Compare CI commands with local project commands.
+5. Add or update only the workflows required.
+6. Verify YAML and referenced commands.
+7. Report coverage and remaining gaps.
 
-## Scope (draft — refine before building)
+## Decision rules
 
-- One workflow template per stack the builder actually uses: Node/TS
-  (MERN-style), Go. Not a generic "works for anything" template — two
-  concrete, opinionated ones.
-- Consistent job/step naming across both, so switching between projects
-  doesn't mean relearning what a failed check means.
-- Explicitly NOT deploying itself — hands off to whatever
-  `deployment-consistency` defines as the pre/post-deploy checklist, or
-  to the platform's own deploy hook (Vercel git integration, Render
-  auto-deploy).
+- Never invent scripts that do not exist.
+- Prefer the repository's package manager.
+- Reuse lockfiles and cache safely.
+- Keep independent jobs parallel where useful.
+- Do not add deployment to CI unless requested.
+- Do not expose secrets in logs.
 
-## Before building
+## Verification
 
-- Decide the actual required checks per stack (does Go CI need `go vet`
-  + `staticcheck`? does the Node side need a specific lint config the
-  builder already standardizes on?).
-- Check whether this should read `AGENTS.md`'s conventions (from
-  `project-scaffolder`) to know what "lint clean" and "typecheck clean"
-  mean for this specific project, instead of hardcoding assumptions.
-
-## Structure (matches project-scaffolder's pattern)
-
-```
-cicd-consistency/
-├── SKILL.md
-├── templates/       — .github/workflows/*.yml templates, one per stack type
-└── references/      — notes on why each job/step exists, so future edits don't silently drop a check
-```
+Run local equivalents of CI commands whenever possible.

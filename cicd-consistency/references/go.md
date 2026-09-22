@@ -1,0 +1,9 @@
+# Go CI
+
+Typical verification:
+- gofmt check
+- go vet ./...
+- go test ./...
+- go build ./...
+
+Use the project's Go version and module configuration.
