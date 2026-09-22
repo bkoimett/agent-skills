@@ -1,48 +1,31 @@
 ---
 name: code-conventions
-description: "NOT YET BUILT. Planned: enforce the same linting config, commit style, and README structure across every project, catching drift when a project's config quietly diverges from the builder's standard."
-metadata:
-  status: planned
+description: Audit and maintain project coding conventions, tooling conventions, file organization, and documented standards without inventing new conventions.
 ---
 
-# Code Conventions (planned)
+# Code conventions
 
-## Problem this is meant to solve
+## Purpose
 
-`AGENTS.md` (from `project-scaffolder`) states conventions per project,
-but nothing currently checks that a project's actual lint config, commit
-history, and README structure still match those stated conventions over
-time. This skill is the enforcement/audit layer, not the "state the rule"
-layer — that already exists.
+Detect convention drift and help keep implementation consistent with the project's established rules.
 
-## Scope (draft — refine before building)
+## Procedure
 
-- A standard lint/format config per stack (ESLint/Prettier config for
-  Node/TS, `gofmt`/`golangci-lint` config for Go) that gets dropped into
-  every new project identically, instead of each project's config
-  drifting from hand-tweaking.
-- A commit-message linter/check matching the Conventional Commits +
-  issue-number format already defined in `WORKFLOW.md`'s template — this
-  skill would be what actually verifies commits follow it, not just
-  documents that they should.
-- A README structure check against `README.template.md` — flags when a
-  project's README has drifted from the standard shape (missing the
-  "Project docs" cross-reference section, for example).
+1. Inspect `AGENTS.md`, `DESIGN.md`, and `WORKFLOW.md` when present.
+2. Identify the project's stack and tooling.
+3. Inspect representative source files and configuration.
+4. Run available lint, typecheck, test, and formatting checks.
+5. Compare implementation against documented conventions.
+6. Report concrete drift with file references.
+7. Apply fixes only when requested or clearly part of the task.
 
-## Before building
+## Decision rules
 
-- This one depends most heavily on `project-scaffolder` already being in
-  use on a few real projects — build it after there's drift to actually
-  observe and correct, not before.
-- Decide whether this runs as a CI check (feeding into
-  `cicd-consistency`) or as something the agent runs proactively before
-  a commit.
+- Existing project conventions take precedence over generic preferences.
+- Do not create conventions solely to justify a refactor.
+- Prefer minimal changes.
+- Separate factual violations from recommendations.
 
-## Structure (matches project-scaffolder's pattern)
+## Verification
 
-```
-code-conventions/
-├── SKILL.md
-├── templates/       — the standard lint/format configs per stack
-└── references/      — what "drift" looks like and how to fix each kind
-```
+Run the relevant project checks after any fixes.
