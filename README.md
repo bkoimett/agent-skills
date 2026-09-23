@@ -4,11 +4,12 @@ A focused collection of reusable skills for AI coding agents.
 
 ## Skills
 
-- `project-scaffolder` - turn requirements into a verified project foundation
+- `project-scaffolder` - turn requirements into a verified project foundation; generates `AGENTS.md`, `DESIGN.md`, `WORKFLOW.md`, `README.md` at the project root
 - `code-conventions` - audit and maintain project conventions
 - `cicd-consistency` - create and audit consistent CI
 - `deployment-consistency` - standardize deployment workflows
-- `app-review` - review security, SEO, AI discoverability, and documentation drift
+- `project-standards-audit` - inspect existing projects for canonical startup documents, verify structure against project-scaffolder standards, create missing documents, and return an audit report
+- `app-review` - create/updates the persistent `REVIEW.md` documentation artifact and returns a concise human-readable review summary; does not modify application source code, configuration, dependencies, or runtime behavior
 
 ## Design
 
@@ -16,4 +17,10 @@ Skills are intentionally narrow. `SKILL.md` contains the workflow and references
 
 The intended lifecycle is:
 
-Idea → Scaffold → Build → Review → CI → Deploy → Verify
+New project
+  → project-scaffolder
+  → Existing project onboarding / maintenance
+  → project-standards-audit
+  → app-review
+  → CI/CD
+  → Deployment
