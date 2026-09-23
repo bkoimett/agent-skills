@@ -1,21 +1,42 @@
-# Application review
+# Application Review
+
+Date: YYYY-MM-DD
 
 ## Scope
 
-## Confirmed findings
+## Executive summary
 
-### Security
+## Security
 
-### SEO
+## SEO
 
-### AI discoverability
+## AI discoverability
 
-### Accessibility
+## Accessibility
 
-### Documentation drift
+## Architecture
 
-### Configuration
+## Documentation
 
-## Verification
+## Findings
 
-## Recommendations
+### Critical
+
+### High
+
+### Medium
+
+### Low
+
+## Recommended actions
+
+1. ...
+2. ...
+
+## Verification performed
+
+- ...
+
+## Review status
+
+Complete
