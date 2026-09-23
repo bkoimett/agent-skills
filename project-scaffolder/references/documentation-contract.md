@@ -14,4 +14,7 @@ WORKFLOW.md
 README.md
 : Human-facing setup and project overview.
 
+REVIEW.md
+: Application review artifact; created/updated by app-review after scaffolding. Not generated during initial project scaffolding.
+
 Do not duplicate long explanations across these files.
